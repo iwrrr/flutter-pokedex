@@ -16,10 +16,14 @@ dependencies:
   dio: ^5.9.0
   flutter_bloc: ^9.1.1
   equatable: ^2.0.7
-  json_serializer: ^0.2.0
   go_router: ^16.2.1
   cached_network_image: ^3.4.1
   flutter_svg: ^2.2.1
+  json_annotation: ^4.9.0
+  dartz: ^0.10.1
+  get_it: ^8.2.0
+  awesome_dio_interceptor: ^1.3.0
+  fade_shimmer: ^2.4.0
 
 dev_dependencies:
   flutter_test:
