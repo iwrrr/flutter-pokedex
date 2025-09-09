@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:pokedex/domain/extensions/pokemon_ext.dart';
 import 'package:pokedex/domain/models/pokemon.dart';
 import 'package:pokedex/features/home/pages/components/pokemon_item.dart';
+import 'package:pokedex/navigation/app_routes.dart';
 
 class PokemonGrid extends StatelessWidget {
   final List<Pokemon> data;
@@ -22,7 +25,15 @@ class PokemonGrid extends StatelessWidget {
             crossAxisSpacing: 16,
           ),
           itemBuilder: (context, index) {
-            return PokemonItem(item: data[index], onTap: (pokemon) {});
+            return PokemonItem(
+              item: data[index],
+              onTap: (pokemon) {
+                context.pushNamed(
+                  AppRoutes.pokemonDetailName,
+                  pathParameters: {'id': pokemon.id.toString()},
+                );
+              },
+            );
           },
         ),
       ),
