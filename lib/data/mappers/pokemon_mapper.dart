@@ -1,5 +1,5 @@
 import 'package:pokedex/domain/models/pokemon.dart';
-import 'package:pokedex/infrastructure/network/responses/pokemon_dto.dart';
+import 'package:pokedex/infrastructure/network/responses/pokemon_list/pokemon_dto.dart';
 
 class PokemonMapper {
   const PokemonMapper._();
