@@ -1,0 +1,46 @@
+import 'package:flutter/material.dart';
+
+class StatInfoItem extends StatelessWidget {
+  const StatInfoItem({super.key, required this.label, required this.value});
+
+  final String label;
+  final double value;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      spacing: 12,
+      children: [
+        Expanded(
+          flex: 2,
+          child: Row(
+            children: [
+              Expanded(
+                child: Text(
+                  label,
+                  style: TextTheme.of(
+                    context,
+                  ).labelLarge?.copyWith(color: Colors.grey),
+                ),
+              ),
+              Text(
+                value.toStringAsFixed(0),
+                style: TextTheme.of(
+                  context,
+                ).labelLarge?.copyWith(color: Colors.grey),
+              ),
+            ],
+          ),
+        ),
+        Expanded(
+          flex: 3,
+          child: LinearProgressIndicator(
+            value: value / 100,
+            borderRadius: BorderRadius.circular(10),
+            backgroundColor: Colors.grey.shade100,
+          ),
+        ),
+      ],
+    );
+  }
+}
