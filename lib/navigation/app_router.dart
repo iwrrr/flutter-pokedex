@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:pokedex/core/di/di.dart';
 import 'package:pokedex/features/home/cubit/home_cubit.dart';
 import 'package:pokedex/features/home/pages/home_page.dart';
+import 'package:pokedex/features/pokemon_detail/cubit/pokemon_detail_cubit.dart';
 import 'package:pokedex/features/pokemon_detail/pages/pokemon_detail_page.dart';
 import 'package:pokedex/navigation/app_routes.dart';
 
@@ -19,7 +20,9 @@ class AppRouter {
         pageBuilder: (context, state) => CupertinoPage(
           key: state.pageKey,
           child: BlocProvider(
-            create: (context) => HomeCubit(getPokemonsUseCase: sl()),
+            create: (context) {
+              return HomeCubit(getPokemonsUseCase: sl());
+            },
             child: const HomePage(),
           ),
         ),
@@ -29,7 +32,12 @@ class AppRouter {
         name: AppRoutes.pokemonDetailName,
         pageBuilder: (context, state) => CupertinoPage(
           key: state.pageKey,
-          child: PokemonDetailPage(id: state.pathParameters['id']!),
+          child: BlocProvider(
+            create: (context) {
+              return PokemonDetailCubit(getPokemonDetailUseCase: sl());
+            },
+            child: PokemonDetailPage(id: state.pathParameters['id']!),
+          ),
         ),
       ),
     ],
