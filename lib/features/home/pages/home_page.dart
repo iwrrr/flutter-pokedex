@@ -63,11 +63,7 @@ class _HomePageState extends State<HomePage> {
                         color: isScrolled ? Colors.white : Colors.transparent,
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.only(
-                          left: 16,
-                          right: 16,
-                          bottom: 16,
-                        ),
+                        padding: const EdgeInsets.all(16),
                         child: SafeArea(
                           child: Row(
                             children: [

@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pokedex/core/exception/failure.dart';
+import 'package:pokedex/core/state/view_data.dart';
+import 'package:pokedex/core/state/view_data_ext.dart';
+import 'package:pokedex/domain/models/pokemon_detail.dart';
+import 'package:pokedex/features/pokemon_detail/cubit/pokemon_detail_cubit.dart';
 import 'package:pokedex/features/pokemon_detail/pages/components/stat_info_item.dart';
 
 class StatsContent extends StatelessWidget {
@@ -14,17 +20,42 @@ class StatsContent extends StatelessWidget {
         SliverToBoxAdapter(
           child: Padding(
             padding: const EdgeInsets.all(16),
-            child: Column(
-              spacing: 16,
-              children: [
-                StatInfoItem(label: 'HP', value: 45),
-                StatInfoItem(label: 'Attack', value: 60),
-                StatInfoItem(label: 'Defense', value: 50),
-                StatInfoItem(label: 'Sp. Attack', value: 70),
-                StatInfoItem(label: 'Sp. Defense', value: 65),
-                StatInfoItem(label: 'Speed', value: 55),
-              ],
-            ),
+            child:
+                BlocSelector<
+                  PokemonDetailCubit,
+                  PokemonDetailState,
+                  ViewData<PokemonDetail, Failure>
+                >(
+                  selector: (state) {
+                    return state.pokemonDetailState;
+                  },
+                  builder: (context, state) {
+                    return state.when(
+                      orElse: () {
+                        return Column(
+                          spacing: 16,
+                          children: List.generate(
+                            4,
+                            (index) => StatInfoItemLoading(),
+                          ),
+                        );
+                      },
+                      onSuccess: (data) {
+                        return Column(
+                          spacing: 16,
+                          children: data.stats
+                              .map(
+                                (stat) => StatInfoItem(
+                                  label: stat.name,
+                                  value: stat.base.toDouble(),
+                                ),
+                              )
+                              .toList(),
+                        );
+                      },
+                    );
+                  },
+                ),
           ),
         ),
       ],

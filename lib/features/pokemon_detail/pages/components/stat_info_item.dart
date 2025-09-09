@@ -1,3 +1,4 @@
+import 'package:fade_shimmer/fade_shimmer.dart';
 import 'package:flutter/material.dart';
 
 class StatInfoItem extends StatelessWidget {
@@ -38,6 +39,37 @@ class StatInfoItem extends StatelessWidget {
             value: value / 100,
             borderRadius: BorderRadius.circular(10),
             backgroundColor: Colors.grey.shade100,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class StatInfoItemLoading extends StatelessWidget {
+  const StatInfoItemLoading({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      spacing: 12,
+      children: [
+        Expanded(
+          flex: 2,
+          child: FadeShimmer(
+            height: 14,
+            width: double.infinity,
+            radius: 8,
+            fadeTheme: FadeTheme.light,
+          ),
+        ),
+        Expanded(
+          flex: 3,
+          child: FadeShimmer(
+            height: 14,
+            width: double.infinity,
+            radius: 8,
+            fadeTheme: FadeTheme.light,
           ),
         ),
       ],
