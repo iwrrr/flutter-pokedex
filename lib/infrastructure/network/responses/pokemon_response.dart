@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:pokedex/infrastructure/network/responses/pokemon_dto.dart';
+import 'package:pokedex/infrastructure/network/responses/pokemon_list/pokemon_dto.dart';
 
 part 'pokemon_response.g.dart';
 
