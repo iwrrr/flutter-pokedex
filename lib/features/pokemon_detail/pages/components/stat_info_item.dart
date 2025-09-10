@@ -35,10 +35,16 @@ class StatInfoItem extends StatelessWidget {
         ),
         Expanded(
           flex: 3,
-          child: LinearProgressIndicator(
-            value: value / 100,
-            borderRadius: BorderRadius.circular(10),
-            backgroundColor: Colors.grey.shade100,
+          child: Builder(
+            builder: (context) {
+              final valueColor = value > 50 ? Colors.green : Colors.red;
+              return LinearProgressIndicator(
+                value: value / 100,
+                valueColor: AlwaysStoppedAnimation(valueColor),
+                borderRadius: BorderRadius.circular(10),
+                backgroundColor: Colors.grey.shade100,
+              );
+            },
           ),
         ),
       ],

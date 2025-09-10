@@ -43,14 +43,12 @@ class StatsContent extends StatelessWidget {
                       onSuccess: (data) {
                         return Column(
                           spacing: 16,
-                          children: data.stats
-                              .map(
-                                (stat) => StatInfoItem(
-                                  label: stat.name,
-                                  value: stat.base.toDouble(),
-                                ),
-                              )
-                              .toList(),
+                          children: data.stats.map((stat) {
+                            return StatInfoItem(
+                              label: stat.name,
+                              value: stat.base.toDouble(),
+                            );
+                          }).toList(),
                         );
                       },
                     );

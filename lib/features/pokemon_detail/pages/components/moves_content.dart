@@ -10,7 +10,7 @@ class MovesContent extends StatelessWidget {
         SliverOverlapInjector(
           handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
         ),
-        SliverFillRemaining(child: Center(child: Text('Not yet implemented'))),
+        SliverFillRemaining(child: Center(child: Text('Coming soon'))),
       ],
     );
   }
