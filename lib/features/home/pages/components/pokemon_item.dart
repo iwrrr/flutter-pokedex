@@ -17,65 +17,72 @@ class PokemonItem extends StatelessWidget {
     return InkWell(
       onTap: () => onTap(item),
       borderRadius: BorderRadius.circular(16),
-      child: Container(
-        clipBehavior: Clip.antiAlias,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(16),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.1),
-              blurRadius: 10,
-              offset: const Offset(0, 4),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final width = constraints.maxWidth;
+          final height = constraints.maxHeight;
+
+          return Container(
+            clipBehavior: Clip.antiAlias,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(16),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.1),
+                  blurRadius: 10,
+                  offset: const Offset(0, 4),
+                ),
+              ],
             ),
-          ],
-        ),
-        child: Stack(
-          children: [
-            Positioned(
-              bottom: -16,
-              right: -16,
-              child: Assets.images.pokeball.image(
-                width: 100,
-                height: 100,
-                color: Colors.black.withValues(alpha: 0.05),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(
-                    item.name.capitalizeWord(),
-                    style: TextTheme.of(context).titleMedium,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+            child: Stack(
+              children: [
+                Positioned(
+                  bottom: -16,
+                  right: -36,
+                  child: Assets.images.pokeball.image(
+                    width: width * 0.8,
+                    height: height,
+                    color: Colors.black.withValues(alpha: 0.05),
                   ),
-                  Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            '#${item.number}',
-                            style: TextTheme.of(context).bodyLarge,
-                          ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(
+                        item.name.capitalizeWord(),
+                        style: TextTheme.of(context).titleMedium,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      Expanded(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                '#${item.number}',
+                                style: TextTheme.of(context).bodyLarge,
+                              ),
+                            ),
+                            CachedNetworkImage(
+                              imageUrl: item.imageUrl,
+                              width: width * 0.4,
+                              height: width * 0.4,
+                            ),
+                          ],
                         ),
-                        CachedNetworkImage(
-                          imageUrl: item.imageUrl,
-                          width: 60,
-                          height: 60,
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
@@ -86,60 +93,67 @@ class PokemonItemLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      clipBehavior: Clip.antiAlias,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.1),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final width = constraints.maxWidth;
+        final height = constraints.maxHeight;
+
+        return Container(
+          clipBehavior: Clip.antiAlias,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(16),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.1),
+                blurRadius: 10,
+                offset: const Offset(0, 4),
+              ),
+            ],
           ),
-        ],
-      ),
-      child: Stack(
-        children: [
-          Positioned(
-            bottom: -16,
-            right: -16,
-            child: Assets.images.pokeball.image(
-              width: 100,
-              height: 100,
-              color: Colors.black.withValues(alpha: 0.05),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                FadeShimmer(
-                  height: 16,
-                  width: 100,
-                  radius: 4,
-                  fadeTheme: FadeTheme.light,
+          child: Stack(
+            children: [
+              Positioned(
+                bottom: -16,
+                right: -36,
+                child: Assets.images.pokeball.image(
+                  width: width * 0.8,
+                  height: height,
+                  color: Colors.black.withValues(alpha: 0.05),
                 ),
-                Expanded(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      FadeShimmer(
-                        height: 16,
-                        width: 50,
-                        radius: 4,
-                        fadeTheme: FadeTheme.light,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    FadeShimmer(
+                      height: 16,
+                      width: 100,
+                      radius: 4,
+                      fadeTheme: FadeTheme.light,
+                    ),
+                    Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          FadeShimmer(
+                            height: 16,
+                            width: 50,
+                            radius: 4,
+                            fadeTheme: FadeTheme.light,
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

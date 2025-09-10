@@ -7,8 +7,17 @@ import 'package:pokedex/navigation/app_routes.dart';
 
 class PokemonGrid extends StatelessWidget {
   final List<Pokemon> data;
+  final int crossAxisCount;
+  final double mainAxisSpacing;
+  final double crossAxisSpacing;
 
-  const PokemonGrid({required this.data, super.key});
+  const PokemonGrid({
+    required this.data,
+    required this.crossAxisCount,
+    required this.mainAxisSpacing,
+    required this.crossAxisSpacing,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +28,10 @@ class PokemonGrid extends StatelessWidget {
         sliver: SliverGrid.builder(
           itemCount: data.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
+            crossAxisCount: crossAxisCount,
             childAspectRatio: 1.5,
-            mainAxisSpacing: 16,
-            crossAxisSpacing: 16,
+            mainAxisSpacing: mainAxisSpacing,
+            crossAxisSpacing: crossAxisSpacing,
           ),
           itemBuilder: (context, index) {
             return PokemonItem(
@@ -42,7 +51,16 @@ class PokemonGrid extends StatelessWidget {
 }
 
 class PokemonGridLoading extends StatelessWidget {
-  const PokemonGridLoading({super.key});
+  final int crossAxisCount;
+  final double mainAxisSpacing;
+  final double crossAxisSpacing;
+
+  const PokemonGridLoading({
+    required this.crossAxisCount,
+    required this.mainAxisSpacing,
+    required this.crossAxisSpacing,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -53,10 +71,10 @@ class PokemonGridLoading extends StatelessWidget {
         sliver: SliverGrid.builder(
           itemCount: 10,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
+            crossAxisCount: crossAxisCount,
             childAspectRatio: 1.5,
-            mainAxisSpacing: 16,
-            crossAxisSpacing: 16,
+            mainAxisSpacing: mainAxisSpacing,
+            crossAxisSpacing: crossAxisSpacing,
           ),
           itemBuilder: (context, index) {
             return PokemonItemLoading();
