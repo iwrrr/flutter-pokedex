@@ -4,7 +4,7 @@ extension StringExtension on String {
   }
 
   String capitalizeWord() {
-    return split(' ')
+    return split(RegExp(r'[\s-]+'))
         .map((word) {
           if (word.isEmpty) return '';
           return '${word[0].toUpperCase()}${word.substring(1).toLowerCase()}';

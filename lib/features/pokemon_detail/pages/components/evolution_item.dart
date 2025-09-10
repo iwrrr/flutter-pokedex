@@ -26,7 +26,9 @@ class EvolutionItem extends StatelessWidget {
         Column(
           children: [
             Icon(Icons.arrow_forward_rounded),
-            Text('Lvl $level', style: TextTheme.of(context).bodySmall),
+            if (level != null) ...[
+              Text('Lvl $level', style: TextTheme.of(context).bodySmall),
+            ],
           ],
         ),
         PokemonItem(name: toName, image: toImage),

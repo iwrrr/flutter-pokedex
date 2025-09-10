@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fade_shimmer/fade_shimmer.dart';
 import 'package:flutter/material.dart';
+import 'package:pokedex/core/extensions/string_ext.dart';
 import 'package:pokedex/resources/assets.gen.dart';
 
 class PokemonItem extends StatelessWidget {
@@ -38,7 +39,7 @@ class PokemonItem extends StatelessWidget {
             ),
           ],
         ),
-        Text(name),
+        Text(name.capitalizeWord()),
       ],
     );
   }
