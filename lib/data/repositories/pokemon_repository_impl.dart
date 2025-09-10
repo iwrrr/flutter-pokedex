@@ -1,8 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:pokedex/core/exception/error_mapper.dart';
 import 'package:pokedex/core/exception/failure.dart';
+import 'package:pokedex/data/mappers/evolution_chain_mapper.dart';
 import 'package:pokedex/data/mappers/pokemon_detail_mapper.dart';
 import 'package:pokedex/data/mappers/pokemon_mapper.dart';
+import 'package:pokedex/domain/models/evolution_step.dart';
 import 'package:pokedex/domain/models/pokemon.dart';
 import 'package:pokedex/domain/models/pokemon_detail.dart';
 import 'package:pokedex/domain/repositories/pokemon_repository.dart';
@@ -36,6 +38,18 @@ class PokemonRepositoryImpl extends PokemonRepository {
     try {
       final response = await _pokemonService.getPokemonDetail(id);
       return Right(PokemonDetailMapper.fromRemote(response));
+    } catch (e, stack) {
+      return Left(ErrorMapper.map(e, stackTrace: stack));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<EvolutionStep>>> getEvolutionChain({
+    required String id,
+  }) async {
+    try {
+      final response = await _pokemonService.getEvolutionChain(id);
+      return Right(EvolutionChainMapper.fromRemote(response));
     } catch (e, stack) {
       return Left(ErrorMapper.map(e, stackTrace: stack));
     }
