@@ -34,7 +34,10 @@ class AppRouter {
           key: state.pageKey,
           child: BlocProvider(
             create: (context) {
-              return PokemonDetailCubit(getPokemonDetailUseCase: sl());
+              return PokemonDetailCubit(
+                getPokemonDetailUseCase: sl(),
+                getEvolutionChainUseCase: sl(),
+              );
             },
             child: PokemonDetailPage(id: state.pathParameters['id']!),
           ),
