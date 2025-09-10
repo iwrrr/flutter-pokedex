@@ -15,6 +15,11 @@ class App extends StatelessWidget {
           backgroundColor: Colors.white,
           elevation: 0,
         ),
+        tabBarTheme: TabBarThemeData(
+          dividerHeight: 0,
+          splashFactory: NoSplash.splashFactory,
+          overlayColor: WidgetStateProperty.all(Colors.transparent),
+        ),
       ),
       routerDelegate: AppRouter.router.routerDelegate,
       routeInformationParser: AppRouter.router.routeInformationParser,
