@@ -35,7 +35,8 @@ class _PokemonDetailPageState extends State<PokemonDetailPage> {
 
     context.read<PokemonDetailCubit>()
       ..setId(widget.id)
-      ..getPokemonDetail();
+      ..getPokemonDetail()
+      ..getEvolutionChain();
   }
 
   @override
